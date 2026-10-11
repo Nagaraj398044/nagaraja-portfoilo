@@ -1,0 +1,958 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="M. Nagaraja — AI & ML undergraduate, Python developer, and AI-powered web application builder.">
+  <title>M. Nagaraja | AI & ML Developer</title>
+
+  <style>
+    :root {
+      --bg: #080b14;
+      --panel: #101626;
+      --text: #f4f7ff;
+      --muted: #a4afc6;
+      --cyan: #56e5ff;
+      --purple: #a78bfa;
+      --border: rgba(255,255,255,.12);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 80% 10%, #222044 0, transparent 32%),
+        radial-gradient(circle at 10% 45%, #10253a 0, transparent 28%),
+        var(--bg);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, textarea {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8,11,20,.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .logo span, .gradient-text {
+      color: var(--cyan);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: .92rem;
+      transition: color .25s;
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan);
+    }
+
+    section {
+      padding: 95px 0;
+      scroll-margin-top: 72px;
+    }
+
+    .hero {
+      min-height: 82vh;
+      display: flex;
+      align-items: center;
+      padding: 90px 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      border: 1px solid rgba(86,229,255,.35);
+      background: rgba(86,229,255,.08);
+      color: var(--cyan);
+      border-radius: 30px;
+      padding: 6px 14px;
+      margin-bottom: 20px;
+      font-size: .85rem;
+    }
+
+    h1 {
+      font-size: clamp(2.7rem, 6vw, 5rem);
+      line-height: 1.12;
+      letter-spacing: -2px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: -1px;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: var(--muted);
+    }
+
+    .hero-description {
+      max-width: 640px;
+      font-size: 1.08rem;
+      margin-bottom: 28px;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 25px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 19px;
+      font-weight: 700;
+      transition: transform .25s, box-shadow .25s;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 28px rgba(86,229,255,.15);
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, var(--cyan), #9bf4ff);
+      color: #071019;
+      border: none;
+    }
+
+    .btn-outline {
+      background: rgba(255,255,255,.025);
+    }
+
+    .visual {
+      min-height: 350px;
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .orbit {
+      width: 285px;
+      height: 285px;
+      border: 1px solid rgba(86,229,255,.45);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      position: relative;
+      animation: rotate 18s linear infinite;
+      box-shadow: 0 0 60px rgba(86,229,255,.08);
+    }
+
+    .orbit::before, .orbit::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(167,139,250,.45);
+      border-radius: 50%;
+    }
+
+    .orbit::before {
+      inset: 25px -18px;
+      transform: rotate(45deg);
+    }
+
+    .orbit::after {
+      inset: -18px 25px;
+      transform: rotate(-45deg);
+    }
+
+    .orbit-center {
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background: linear-gradient(145deg, #172c43, #251b46);
+      border: 1px solid rgba(255,255,255,.2);
+      box-shadow: 0 0 45px rgba(86,229,255,.16);
+      animation: counterRotate 18s linear infinite;
+    }
+
+    .orbit-center strong {
+      font-size: 2rem;
+      color: var(--cyan);
+    }
+
+    .orbit-center span {
+      display: block;
+      font-size: .85rem;
+      color: var(--muted);
+    }
+
+    .float-tag {
+      position: absolute;
+      padding: 9px 13px;
+      border: 1px solid var(--border);
+      background: #11192a;
+      border-radius: 10px;
+      font-size: .85rem;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .tag-one { top: 35px; right: 0; }
+    .tag-two { bottom: 42px; left: 0; animation-delay: -2s; }
+
+    .section-heading {
+      max-width: 680px;
+      margin-bottom: 38px;
+    }
+
+    .section-heading p {
+      margin-top: 12px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 22px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 20px;
+    }
+
+    .card {
+      padding: 25px;
+      border: 1px solid var(--border);
+      background: rgba(16,22,38,.76);
+      border-radius: 17px;
+      transition: transform .3s, border-color .3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(86,229,255,.45);
+    }
+
+    .card p {
+      font-size: .96rem;
+    }
+
+    .icon-box {
+      font-size: 1.8rem;
+      margin-bottom: 14px;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .skill {
+      border: 1px solid rgba(86,229,255,.25);
+      background: rgba(86,229,255,.07);
+      color: #c9f8ff;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: .88rem;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 250px;
+    }
+
+    .project-card .skill-list {
+      margin-bottom: 20px;
+    }
+
+    .project-card .project-link {
+      margin-top: auto;
+      color: var(--cyan);
+      font-weight: 700;
+    }
+
+    .timeline {
+      border-left: 2px solid rgba(86,229,255,.4);
+      padding-left: 25px;
+      margin-left: 8px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 25px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--cyan);
+      left: -32px;
+      top: 8px;
+      box-shadow: 0 0 15px rgba(86,229,255,.4);
+    }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 25px;
+      align-items: start;
+    }
+
+    .contact-links {
+      display: grid;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .contact-links a {
+      overflow-wrap: anywhere;
+      display: block;
+      padding: 13px 15px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.025);
+      border-radius: 10px;
+      transition: border-color .25s, color .25s;
+    }
+
+    .contact-links a:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .contact-form label {
+      display: block;
+      margin-bottom: 6px;
+      color: #dbe5f8;
+      font-size: .92rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      color: var(--text);
+      background: #0b1120;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 12px 13px;
+      outline: none;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--cyan);
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 125px;
+    }
+
+    .form-status {
+      font-size: .9rem;
+      min-height: 24px;
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 25px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .cursor {
+      display: inline-block;
+      color: var(--cyan);
+      animation: blink .8s steps(2, start) infinite;
+    }
+
+    @keyframes rotate {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes counterRotate {
+      to { transform: rotate(-360deg); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    @keyframes blink {
+      to { visibility: hidden; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @media (max-width: 800px) {
+      .hero-grid, .contact-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .visual {
+        min-height: 320px;
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(2, minmax(0,1fr));
+      }
+
+      section {
+        padding: 70px 0;
+      }
+    }
+
+    @media (max-width: 560px) {
+      nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 15px 0;
+      }
+
+      .nav-links {
+        gap: 12px 17px;
+      }
+
+      .grid-2, .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .orbit {
+        width: 235px;
+        height: 235px;
+      }
+
+      .orbit-center {
+        width: 140px;
+        height: 140px;
+      }
+
+      .tag-one { right: -5px; }
+      .tag-two { left: -5px; }
+      h1 { letter-spacing: -1px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="container" aria-label="Main navigation">
+      <a href="#home" class="logo">M<span>.</span> Nagaraja</a>
+
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <span class="eyebrow">AI & ML Undergraduate</span>
+
+          <h1>
+            Hi, I'm <span class="gradient-text">M. Nagaraja</span>
+          </h1>
+
+          <h2>
+            I build <span id="typing-text" class="gradient-text">AI-powered apps</span><span class="cursor">|</span>
+          </h2>
+
+          <p class="hero-description">
+            I am an AI & ML undergraduate at SEA College of Engineering
+            and Technology, Bengaluru, passionate about Python,
+            artificial intelligence, machine learning, and modern web applications.
+          </p>
+
+          <div class="button-row">
+            <a href="#projects" class="btn btn-primary">Explore My Projects ↗</a>
+            <a href="#contact" class="btn btn-outline">Contact Me</a>
+          </div>
+        </div>
+
+        <div class="visual reveal" aria-label="Animated AI illustration">
+          <div class="orbit">
+            <div class="orbit-center">
+              <div>
+                <strong>AI/ML</strong>
+                <span>Build · Learn · Innovate</span>
+              </div>
+            </div>
+          </div>
+          <div class="float-tag tag-one">🤖 Artificial Intelligence</div>
+          <div class="float-tag tag-two">🐍 Python Developer</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">About Me</span>
+          <h2>Turning ideas into <span class="gradient-text">technology</span></h2>
+          <p>
+            I enjoy learning new technologies and building useful applications
+            that solve real-world problems.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <article class="card reveal">
+            <div class="icon-box">🎓</div>
+            <h3>My Background</h3>
+            <p>
+              I am pursuing an undergraduate degree in Artificial Intelligence
+              and Machine Learning at SEA College of Engineering and Technology,
+              Bengaluru, with an 8.5 CGPA.
+            </p>
+          </article>
+
+          <article class="card reveal">
+            <div class="icon-box">💡</div>
+            <h3>My Interests</h3>
+            <p>
+              My interests include Python programming, computer vision,
+              face recognition, machine learning, and AI-powered web and
+              mobile applications.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">My Skills</span>
+          <h2>Tools I <span class="gradient-text">work with</span></h2>
+          <p>
+            Technologies I use or am learning through coursework and projects.
+            Update this list to match your actual experience.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <article class="card reveal">
+            <div class="icon-box">💻</div>
+            <h3>Programming & Web</h3>
+            <div class="skill-list">
+              <span class="skill">Python</span>
+              <span class="skill">Java</span>
+              <span class="skill">HTML</span>
+              <span class="skill">CSS</span>
+              <span class="skill">JavaScript</span>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="icon-box">🧠</div>
+            <h3>AI & Development Tools</h3>
+            <div class="skill-list">
+              <span class="skill">Artificial Intelligence</span>
+              <span class="skill">Machine Learning</span>
+              <span class="skill">OpenCV</span>
+              <span class="skill">Git & GitHub</span>
+              <span class="skill">VS Code</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">My Work</span>
+          <h2>Featured <span class="gradient-text">projects</span></h2>
+          <p>
+            A selection of projects you can showcase. Replace descriptions
+            and links with your completed work and repositories.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card project-card reveal">
+            <div class="icon-box">📸</div>
+            <h3>Smart Attendance System</h3>
+            <p>
+              A face-recognition attendance project concept using Python
+              and OpenCV to identify registered students and record attendance.
+            </p>
+            <div class="skill-list">
+              <span class="skill">Python</span>
+              <span class="skill">OpenCV</span>
+              <span class="skill">CSV</span>
+            </div>
+            <a class="project-link"
+               href="https://github.com/nagaraj398044"
+               target="_blank" rel="noopener noreferrer">
+              View GitHub profile ↗
+            </a>
+          </article>
+
+          <article class="card project-card reveal">
+            <div class="icon-box">🌐</div>
+            <h3>AI-Powered Web Applications</h3>
+            <p>
+              Web application development focused on clean interfaces,
+              interactive features, and exploring AI-powered functionality.
+            </p>
+            <div class="skill-list">
+              <span class="skill">HTML/CSS</span>
+              <span class="skill">JavaScript</span>
+              <span class="skill">Python</span>
+            </div>
+            <a class="project-link"
+               href="https://github.com/nagaraj398044"
+               target="_blank" rel="noopener noreferrer">
+              View GitHub profile ↗
+            </a>
+          </article>
+
+          <article class="card project-card reveal">
+            <div class="icon-box">⚙️</div>
+            <h3>Python Automation</h3>
+            <p>
+              Python scripting ideas to simplify repetitive tasks,
+              organize information, and improve productivity.
+            </p>
+            <div class="skill-list">
+              <span class="skill">Python</span>
+              <span class="skill">Automation</span>
+            </div>
+            <a class="project-link"
+               href="https://github.com/nagaraj398044"
+               target="_blank" rel="noopener noreferrer">
+              View GitHub profile ↗
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Education</span>
+          <h2>My learning <span class="gradient-text">journey</span></h2>
+        </div>
+
+        <div class="card reveal">
+          <div class="timeline">
+            <div class="timeline-item">
+              <h3>Undergraduate — Artificial Intelligence & Machine Learning</h3>
+              <p>SEA College of Engineering and Technology, Bengaluru</p>
+              <p><strong>CGPA: 8.5</strong></p>
+              <p>
+                Focus areas include programming, AI, machine learning,
+                and software development.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Contact Me</span>
+          <h2>Let's build something <span class="gradient-text">great</span></h2>
+          <p>
+            Have a project idea, internship opportunity, or collaboration in mind?
+            Feel free to contact me.
+          </p>
+        </div>
+
+        <div class="contact-layout">
+          <div class="card reveal">
+            <h3>Get in touch</h3>
+            <p>
+              You can email me or connect with me through my professional profiles.
+            </p>
+
+            <div class="contact-links">
+              <a href="mailto:nagaraj398044@gmail.com">
+                ✉️ nagaraj398044@gmail.com
+              </a>
+
+              <a href="https://github.com/nagaraj398044"
+                 target="_blank" rel="noopener noreferrer">
+                💻 GitHub Profile ↗
+              </a>
+
+              <a href="https://www.linkedin.com/in/m-nagaraj-95672a386"
+                 target="_blank" rel="noopener noreferrer">
+                🔗 LinkedIn Profile ↗
+              </a>
+            </div>
+          </div>
+
+          <div class="card reveal">
+            <h3>Send me a message</h3>
+            <p style="margin-bottom: 18px;">
+              Fill out this form to prepare an email in your email application.
+            </p>
+
+            <form id="contact-form" class="contact-form">
+              <div>
+                <label for="name">Your name</label>
+                <input id="name" name="name" type="text"
+                       placeholder="Enter your name" required>
+              </div>
+
+              <div>
+                <label for="email">Your email</label>
+                <input id="email" name="email" type="email"
+                       placeholder="Enter your email" required>
+              </div>
+
+              <div>
+                <label for="subject">Subject</label>
+                <input id="subject" name="subject" type="text"
+                       placeholder="What is this about?" required>
+              </div>
+
+              <div>
+                <label for="message">Message</label>
+                <textarea id="message" name="message"
+                          placeholder="Write your message..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary">
+                Prepare Email ↗
+              </button>
+
+              <p id="form-status" class="form-status" role="status"
+                 aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>
+        © <span id="year"></span> M. Nagaraja · Designed with curiosity and code.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // 1. Typing animation in the hero section
+    const typingElement = document.getElementById("typing-text");
+
+    const phrases = [
+      "AI-powered apps",
+      "Python projects",
+      "Machine learning solutions",
+      "modern web experiences"
+    ];
+
+    let phraseIndex = 0;
+    let characterIndex = 0;
+    let deleting = false;
+
+    function typeEffect() {
+      const phrase = phrases[phraseIndex];
+
+      if (deleting) {
+        characterIndex--;
+      } else {
+        characterIndex++;
+      }
+
+      typingElement.textContent = phrase.substring(0, characterIndex);
+
+      let delay = deleting ? 45 : 85;
+
+      if (!deleting && characterIndex === phrase.length) {
+        deleting = true;
+        delay = 1300;
+      } else if (deleting && characterIndex === 0) {
+        deleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        delay = 350;
+      }
+
+      window.setTimeout(typeEffect, delay);
+    }
+
+    typeEffect();
+
+
+    // 2. Reveal sections smoothly as they enter the screen
+    const revealElements = document.querySelectorAll(".reveal");
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12
+      });
+
+      revealElements.forEach((element) => observer.observe(element));
+    } else {
+      revealElements.forEach((element) => {
+        element.classList.add("visible");
+      });
+    }
+
+
+    // 3. Automatically update the footer year
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+
+    // 4. Contact form: prepare an email draft
+    const contactForm = document.getElementById("contact-form");
+    const formStatus = document.getElementById("form-status");
+
+    const recipient = "nagaraj398044@gmail.com";
+
+    contactForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      if (!contactForm.reportValidity()) {
+        return;
+      }
+
+      const senderName = document.getElementById("name").value.trim();
+      const senderEmail = document.getElementById("email").value.trim();
+      const subject = document.getElementById("subject").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (!senderName || !senderEmail || !subject || !message) {
+        formStatus.textContent = "Please complete all fields.";
+        return;
+      }
+
+      const emailSubject = encodeURIComponent(subject);
+      const emailBody = encodeURIComponent(
+        "Name: " + senderName + "\n" +
+        "Email: " + senderEmail + "\n\n" +
+        "Message:\n" + message
+      );
+
+      const mailtoLink =
+        "mailto:" + recipient +
+        "?subject=" + emailSubject +
+        "&body=" + emailBody;
+
+      formStatus.textContent =
+        "Opening your email application. Review the draft and press Send there.";
+
+      window.location.href = mailtoLink;
+    });
+  </script>
+</body>
+</html>
